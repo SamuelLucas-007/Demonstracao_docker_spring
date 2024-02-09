@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+  database:
+    image: mysql:latest
+    container_name: database
+    restart: always
+    
+    ports:
+      - "3306:3306"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: backoffice
+      MYSQL_USER: backoffice
+      MYSQL_PASSWORD: backoffice
+    
+    volumes:
+      - db-volume:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db-volume:
+
+  
